@@ -1,0 +1,27 @@
+# Evergreen Wealth Track
+
+> Calm, India-first personal finance web app: expense tracking in INR with multi-currency support, budgeting, SIP and compound-interest calculators, subscription planning, and honest curated finance reading.
+
+## About
+- Name: Evergreen Wealth Track
+- Website: https://solace-nest-scribe.lovable.app
+- Purpose: Help individuals in India track money, plan budgets, and grow savings without dark patterns or noise.
+- Audience: Individuals and households in India who want a simple, private money tool.
+
+## Public sections
+- Home: https://solace-nest-scribe.lovable.app/
+- How it works: https://solace-nest-scribe.lovable.app/how-it-works
+- Blog (Why Evergreen): https://solace-nest-scribe.lovable.app/blog
+- Security overview: https://solace-nest-scribe.lovable.app/security
+- Sign in: https://solace-nest-scribe.lovable.app/auth
+
+## Authenticated features (require sign-in)
+- Dashboard, Expenses, Budget, Calculator (SIP + compound), Subscriptions / plans, Profile.
+
+## Principles
+- Bank-grade row-level security; no re-selling of user data.
+- INR-first with multi-currency conversion.
+- No dark patterns, no manipulative upsells.
+
+## Contact
+- Product feedback and support: via the in-app chat widget or the contact form on the site.
