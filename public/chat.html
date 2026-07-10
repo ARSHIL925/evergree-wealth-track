@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Evergreen Helper — Multilingual FAQ for Budgeting, SIP & Compounding</title>
+  <meta name="description" content="Answers to common questions about Evergreen: SIPs, compound interest, budgeting, multi-currency, UPI and account security — in 8 languages." />
+  <meta name="keywords" content="Evergreen, personal finance, SIP, compound interest, budget planner, UPI, multilingual FAQ" />
+  <link rel="canonical" href="https://solace-nest-scribe.lovable.app/chat.html" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Evergreen Helper — Multilingual FAQ" />
+  <meta property="og:description" content="Quick answers about SIPs, compounding, budgeting and account security — offline mirror of the in-app helper." />
+  <meta property="og:url" content="https://solace-nest-scribe.lovable.app/chat.html" />
+  <meta name="twitter:card" content="summary" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What is a SIP?","acceptedAnswer":{"@type":"Answer","text":"A Systematic Investment Plan is a way to invest a fixed rupee amount into a mutual fund every month, using rupee-cost averaging to smooth market volatility."}},
+    {"@type":"Question","name":"How does compound interest work?","acceptedAnswer":{"@type":"Answer","text":"Compounding earns interest on both your principal and the interest already earned, so growth accelerates the longer you stay invested."}},
+    {"@type":"Question","name":"How safe is my data on Evergreen?","acceptedAnswer":{"@type":"Answer","text":"Every table uses Row-Level Security scoped to your user id. Traffic is HTTPS-only with strict security headers."}},
+    {"@type":"Question","name":"Is UPI real money?","acceptedAnswer":{"@type":"Answer","text":"UPI links open your bank app to send money to the saved UPI id. Subscriptions on this site are demo-mode and award in-app tokens, not real charges."}}
+  ]}
+  </script>
+  <style>
+    :root { color-scheme: light dark; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+    body { background: linear-gradient(180deg, #ecfdf5 0%, #ffffff 60%); color: #0f172a; }
+    @media (prefers-color-scheme: dark) {
+      body { background: linear-gradient(180deg, #052e2b 0%, #0b1220 60%); color: #e2e8f0; }
+    }
+    .shell { max-width: 520px; margin: 0 auto; padding: 24px 16px 48px; }
+    header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .badge { width: 40px; height: 40px; border-radius: 999px; background: #10b98122; display: grid; place-items: center; color: #10b981; font-weight: 700; }
+    h1 { font-size: 20px; margin: 0; font-weight: 600; letter-spacing: -0.01em; }
+    .sub { font-size: 12px; color: #64748b; }
+    .card { background: #ffffffaa; backdrop-filter: blur(10px); border: 1px solid #e2e8f0; border-radius: 20px; padding: 16px; }
+    @media (prefers-color-scheme: dark) {
+      .card { background: #0f172a99; border-color: #1f2a3a; }
+      .sub { color: #94a3b8; }
+    }
+    .langs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+    .lang { text-align: left; padding: 10px 12px; border-radius: 14px; border: 1px solid #e2e8f0; background: #fff; cursor: pointer; font: inherit; transition: transform .1s ease, border-color .15s ease; }
+    .lang:hover { border-color: #10b981; }
+    .lang:active { transform: scale(.97); }
+    .lang .native { font-weight: 600; display: block; }
+    .lang .en { font-size: 11px; color: #64748b; }
+    @media (prefers-color-scheme: dark) {
+      .lang { background: #111827; border-color: #1f2a3a; color: #e2e8f0; }
+      .lang .en { color: #94a3b8; }
+    }
+    .qa { margin-top: 16px; display: grid; gap: 10px; }
+    details { border: 1px solid #e2e8f0; border-radius: 14px; padding: 10px 14px; background: #fff; }
+    details[open] { border-color: #10b981; }
+    summary { cursor: pointer; font-weight: 500; }
+    p { margin: 8px 0 0; font-size: 14px; line-height: 1.5; color: #334155; }
+    @media (prefers-color-scheme: dark) {
+      details { background: #111827; border-color: #1f2a3a; }
+      p { color: #cbd5e1; }
+    }
+    footer { margin-top: 24px; text-align: center; font-size: 12px; color: #64748b; }
+    a { color: #059669; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="badge">E</div>
+      <div>
+        <h1>Evergreen helper</h1>
+        <div class="sub">Frequently asked questions — offline mirror</div>
+      </div>
+    </header>
+
+    <section class="card" aria-labelledby="lang-h">
+      <div id="lang-h" style="font-weight:600">Choose your language</div>
+      <div class="sub">This static page mirrors the in-app chat so it works even without JavaScript frameworks loaded.</div>
+      <div class="langs">
+        <button class="lang" data-lang="en"><span class="native">English</span><span class="en">English</span></button>
+        <button class="lang" data-lang="hi"><span class="native">हिन्दी</span><span class="en">Hindi</span></button>
+        <button class="lang" data-lang="es"><span class="native">Español</span><span class="en">Spanish</span></button>
+        <button class="lang" data-lang="fr"><span class="native">Français</span><span class="en">French</span></button>
+        <button class="lang" data-lang="ar"><span class="native">العربية</span><span class="en">Arabic</span></button>
+        <button class="lang" data-lang="bn"><span class="native">বাংলা</span><span class="en">Bengali</span></button>
+        <button class="lang" data-lang="ta"><span class="native">தமிழ்</span><span class="en">Tamil</span></button>
+        <button class="lang" data-lang="zh"><span class="native">中文</span><span class="en">Chinese</span></button>
+      </div>
+    </section>
+
+    <section class="qa" aria-label="Questions">
+      <details>
+        <summary>What is a SIP?</summary>
+        <p>A Systematic Investment Plan is a way to invest a fixed rupee amount into a mutual fund every month. It builds discipline and uses rupee-cost averaging — you buy more units when prices fall, fewer when they rise — smoothing volatility over the long run.</p>
+      </details>
+      <details>
+        <summary>How does compound interest work?</summary>
+        <p>Compounding earns interest on both your principal and the interest already earned. A ₹5,000 monthly SIP at 12% for 20 years grows to about ₹50 lakhs even though you only contributed ₹12 lakhs.</p>
+      </details>
+      <details>
+        <summary>How safe is my data on Evergreen?</summary>
+        <p>Every table uses Row-Level Security scoped to your user id. Traffic is HTTPS-only with strict security headers. See the Security page inside the app for the full list of controls.</p>
+      </details>
+      <details>
+        <summary>Is UPI real money?</summary>
+        <p>UPI links generated in your Profile open your bank app to send money to the UPI id you saved. Subscriptions on this site are demo-mode: paying awards in-app tokens, no real charge.</p>
+      </details>
+    </section>
+
+    <footer>
+      <a href="/">← Back to Evergreen</a>
+    </footer>
+  </div>
+
+  <script>
+    // Persist language choice so the React app picks it up on next visit.
+    document.querySelectorAll('.lang').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        try {
+          var code = btn.getAttribute('data-lang');
+          localStorage.setItem('evergreen_lang', code);
+          window.dispatchEvent(new CustomEvent('evergreen:lang', { detail: code }));
+        } catch (e) {}
+        window.location.href = '/';
+      });
+    });
+  </script>
+</body>
+</html>

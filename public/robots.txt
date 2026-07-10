@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /auth
+Disallow: /dashboard
+Disallow: /profile
+Disallow: /expenses
+Disallow: /calculator
+Disallow: /subscriptions
+Disallow: /budget
+
+Sitemap: https://solace-nest-scribe.lovable.app/sitemap.xml

@@ -10,7 +10,12 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import faviconAsset from "../assets/evergreen-logo.png.asset.json";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { ThemeProvider } from "../components/ThemeProvider";
+import { Toaster } from "../components/ui/sonner";
+import { ChatWidget } from "../components/ChatWidget";
+import { supabase } from "../integrations/supabase/client";
 
 function NotFoundComponent() {
   return (
@@ -77,21 +82,55 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Evergreen Wealth Track — Mindful money for India" },
+      { name: "description", content: "Track expenses in INR with multi-currency support, plan subscriptions, calculate, and grow your money the calm way." },
+      { name: "author", content: "Evergreen Wealth Track" },
+      { name: "theme-color", content: "#0F766E" },
+      { property: "og:title", content: "Evergreen Wealth Track — Mindful money for India" },
+      { property: "og:description", content: "Track expenses in INR with multi-currency support, plan subscriptions, calculate, and grow your money the calm way." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "Evergreen Wealth Track — Mindful money for India" },
+      { name: "twitter:description", content: "Track expenses in INR with multi-currency support, plan subscriptions, calculate, and grow your money the calm way." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2d6a06ed-d3f3-4e2b-af36-f65cc0e09673/id-preview-8ed4572d--537beaaf-94aa-49ee-bdab-c95d2dbebfe9.lovable.app-1781499801123.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2d6a06ed-d3f3-4e2b-af36-f65cc0e09673/id-preview-8ed4572d--537beaaf-94aa-49ee-bdab-c95d2dbebfe9.lovable.app-1781499801123.png" },
+      { name: "google-site-verification", content: "sJwfp__in7uB6T-hm9rhU8fLRLBt1W_5bPgfE0mYDfQ" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", type: "image/png", href: faviconAsset.url },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&display=swap" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Organization",
+              name: "Evergreen Wealth Track",
+              url: "https://solace-nest-scribe.lovable.app",
+              logo: faviconAsset.url,
+            },
+            {
+              "@type": "WebSite",
+              name: "Evergreen Wealth Track",
+              url: "https://solace-nest-scribe.lovable.app",
+              potentialAction: {
+                "@type": "SearchAction",
+                target: "https://solace-nest-scribe.lovable.app/blog?q={search_term_string}",
+                "query-input": "required name=search_term_string",
+              },
+            },
+          ],
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -116,11 +155,23 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
+  useEffect(() => {
+    const { data: sub } = supabase.auth.onAuthStateChange((event) => {
+      if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
+      router.invalidate();
+      if (event !== "SIGNED_OUT") queryClient.invalidateQueries();
+    });
+    return () => sub.subscription.unsubscribe();
+  }, [router, queryClient]);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
-    </QueryClientProvider>
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <Outlet />
+        <Toaster richColors closeButton />
+        <ChatWidget />
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }
