@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { getMonthlyPosts } from "@/lib/blog.functions";
 
-const BASE_URL = "https://solace-nest-scribe.lovable.app";
+const BASE_URL = "https://evergree-wealth-track.lovable.app";
 const staticEntries = [
   { path: "/", priority: "1.0", changefreq: "weekly" },
   { path: "/how-it-works", priority: "0.9", changefreq: "monthly" },

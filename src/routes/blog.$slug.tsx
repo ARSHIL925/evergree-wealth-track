@@ -44,7 +44,7 @@ export const Route = createFileRoute("/blog/$slug")({
                   name: "Evergreen Wealth Track",
                   logo: {
                     "@type": "ImageObject",
-                    url: "https://solace-nest-scribe.lovable.app/favicon.ico",
+                    url: "https://evergree-wealth-track.lovable.app/favicon.ico",
                   },
                 },
                 datePublished: data.published_at,
