@@ -18,6 +18,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogBestExpenseTrackerAppsIndiaRouteImport } from './routes/blog.best-expense-tracker-apps-india'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AuthenticatedSubscriptionsRouteImport } from './routes/_authenticated/subscriptions'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
@@ -72,6 +73,12 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
   path: '/',
   getParentRoute: () => BlogRoute,
 } as any)
+const BlogBestExpenseTrackerAppsIndiaRoute =
+  BlogBestExpenseTrackerAppsIndiaRouteImport.update({
+    id: '/best-expense-tracker-apps-india',
+    path: '/best-expense-tracker-apps-india',
+    getParentRoute: () => BlogRoute,
+  } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -135,6 +142,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof AuthenticatedProfileRoute
   '/subscriptions': typeof AuthenticatedSubscriptionsRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/blog/best-expense-tracker-apps-india': typeof BlogBestExpenseTrackerAppsIndiaRoute
   '/blog/': typeof BlogIndexRoute
   '/api/public/hooks/new-signup': typeof ApiPublicHooksNewSignupRoute
   '/api/public/webhooks/razorpay': typeof ApiPublicWebhooksRazorpayRoute
@@ -153,6 +161,7 @@ export interface FileRoutesByTo {
   '/profile': typeof AuthenticatedProfileRoute
   '/subscriptions': typeof AuthenticatedSubscriptionsRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/blog/best-expense-tracker-apps-india': typeof BlogBestExpenseTrackerAppsIndiaRoute
   '/blog': typeof BlogIndexRoute
   '/api/public/hooks/new-signup': typeof ApiPublicHooksNewSignupRoute
   '/api/public/webhooks/razorpay': typeof ApiPublicWebhooksRazorpayRoute
@@ -174,6 +183,7 @@ export interface FileRoutesById {
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
   '/_authenticated/subscriptions': typeof AuthenticatedSubscriptionsRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/blog/best-expense-tracker-apps-india': typeof BlogBestExpenseTrackerAppsIndiaRoute
   '/blog/': typeof BlogIndexRoute
   '/api/public/hooks/new-signup': typeof ApiPublicHooksNewSignupRoute
   '/api/public/webhooks/razorpay': typeof ApiPublicWebhooksRazorpayRoute
@@ -195,6 +205,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/subscriptions'
     | '/blog/$slug'
+    | '/blog/best-expense-tracker-apps-india'
     | '/blog/'
     | '/api/public/hooks/new-signup'
     | '/api/public/webhooks/razorpay'
@@ -213,6 +224,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/subscriptions'
     | '/blog/$slug'
+    | '/blog/best-expense-tracker-apps-india'
     | '/blog'
     | '/api/public/hooks/new-signup'
     | '/api/public/webhooks/razorpay'
@@ -233,6 +245,7 @@ export interface FileRouteTypes {
     | '/_authenticated/profile'
     | '/_authenticated/subscriptions'
     | '/blog/$slug'
+    | '/blog/best-expense-tracker-apps-india'
     | '/blog/'
     | '/api/public/hooks/new-signup'
     | '/api/public/webhooks/razorpay'
@@ -314,6 +327,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/blog/'
       preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/best-expense-tracker-apps-india': {
+      id: '/blog/best-expense-tracker-apps-india'
+      path: '/best-expense-tracker-apps-india'
+      fullPath: '/blog/best-expense-tracker-apps-india'
+      preLoaderRoute: typeof BlogBestExpenseTrackerAppsIndiaRouteImport
       parentRoute: typeof BlogRoute
     }
     '/blog/$slug': {
@@ -405,11 +425,13 @@ const AuthenticatedRouteRouteWithChildren =
 
 interface BlogRouteChildren {
   BlogSlugRoute: typeof BlogSlugRoute
+  BlogBestExpenseTrackerAppsIndiaRoute: typeof BlogBestExpenseTrackerAppsIndiaRoute
   BlogIndexRoute: typeof BlogIndexRoute
 }
 
 const BlogRouteChildren: BlogRouteChildren = {
   BlogSlugRoute: BlogSlugRoute,
+  BlogBestExpenseTrackerAppsIndiaRoute: BlogBestExpenseTrackerAppsIndiaRoute,
   BlogIndexRoute: BlogIndexRoute,
 }
 
