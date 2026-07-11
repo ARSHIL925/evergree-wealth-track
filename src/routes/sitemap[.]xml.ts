@@ -8,6 +8,7 @@ const staticEntries = [
   { path: "/blog", priority: "0.8", changefreq: "weekly" },
   { path: "/security", priority: "0.7", changefreq: "monthly" },
   { path: "/auth", priority: "0.4", changefreq: "yearly" },
+  { path: "/blog/best-expense-tracker-apps-india", priority: "0.7", changefreq: "monthly" },
 ];
 
 export const Route = createFileRoute("/sitemap.xml")({
