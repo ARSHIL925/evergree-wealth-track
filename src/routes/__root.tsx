@@ -92,8 +92,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary" },
       { name: "twitter:title", content: "Evergreen Wealth Track — Mindful money for India" },
       { name: "twitter:description", content: "Track expenses in INR with multi-currency support, plan subscriptions, calculate, and grow your money the calm way." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2d6a06ed-d3f3-4e2b-af36-f65cc0e09673/id-preview-8ed4572d--537beaaf-94aa-49ee-bdab-c95d2dbebfe9.lovable.app-1781499801123.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2d6a06ed-d3f3-4e2b-af36-f65cc0e09673/id-preview-8ed4572d--537beaaf-94aa-49ee-bdab-c95d2dbebfe9.lovable.app-1781499801123.png" },
+      { property: "og:url", content: "https://evergree-wealth-track.lovable.app/" },
       { name: "google-site-verification", content: "sJwfp__in7uB6T-hm9rhU8fLRLBt1W_5bPgfE0mYDfQ" },
     ],
     links: [
