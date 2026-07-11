@@ -114,16 +114,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             {
               "@type": "Organization",
               name: "Evergreen Wealth Track",
-              url: "https://solace-nest-scribe.lovable.app",
+              url: "https://evergree-wealth-track.lovable.app",
               logo: faviconAsset.url,
             },
             {
               "@type": "WebSite",
               name: "Evergreen Wealth Track",
-              url: "https://solace-nest-scribe.lovable.app",
+              url: "https://evergree-wealth-track.lovable.app",
               potentialAction: {
                 "@type": "SearchAction",
-                target: "https://solace-nest-scribe.lovable.app/blog?q={search_term_string}",
+                target: "https://evergree-wealth-track.lovable.app/blog?q={search_term_string}",
                 "query-input": "required name=search_term_string",
               },
             },
