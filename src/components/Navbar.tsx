@@ -174,7 +174,7 @@ export function Navbar() {
           ) : (
             <Link to="/auth" className="hidden md:inline-flex"><Button size="sm">Sign in</Button></Link>
           )}
-          <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setOpen((v) => !v)}>
+          <Button variant="ghost" size="icon" className="md:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen((v) => !v)}>
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
         </div>
