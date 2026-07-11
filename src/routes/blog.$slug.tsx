@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/blog/$slug")({
   head: ({ params, loaderData }) => {
     const data = loaderData as BlogPost | undefined;
-    const url = `https://solace-nest-scribe.lovable.app/blog/${params.slug}`;
+    const url = `https://evergree-wealth-track.lovable.app/blog/${params.slug}`;
     const title = data?.title ?? params.slug.replace(/-/g, " ");
     const description =
       data?.description?.slice(0, 160) ??
