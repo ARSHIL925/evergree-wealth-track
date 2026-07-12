@@ -193,34 +193,7 @@ export function Navbar() {
               </Link>
             ))}
             {authed && (
-              <>
-                <Link to="/profile" onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm hover:bg-muted flex items-center gap-2">
-                  <UserIcon className="h-4 w-4" /> Profile
-                </Link>
-                <Link to="/security" onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm hover:bg-muted flex items-center gap-2">
-                  <ShieldCheck className="h-4 w-4" /> Security
-                </Link>
-                <div className="px-3 py-2">
-                  <div className="mb-1 flex items-center gap-2 text-xs text-muted-foreground">
-                    <Languages className="h-4 w-4" /> Language
-                  </div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {(Object.keys(LANGS) as LangCode[]).map((code) => (
-                      <button key={code} onClick={() => pickLang(code)}
-                        className={`rounded-full border px-2.5 py-1 text-xs ${code === lang ? "border-primary bg-primary/10 text-foreground" : "border-border text-muted-foreground"}`}>
-                        {LANGS[code].native}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-                <div className="px-3 py-2"><ThemeToggle /></div>
-                <button
-                  onClick={async () => { setOpen(false); await supabase.auth.signOut(); router.navigate({ to: "/" }); }}
-                  className="flex items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-destructive hover:bg-muted"
-                >
-                  <LogOut className="h-4 w-4" /> Sign out
-                </button>
-              </>
+              <div className="px-3 py-2"><ThemeToggle /></div>
             )}
             {!authed && (
               <Link to="/auth" onClick={() => setOpen(false)} className="mt-3 border-t border-border/60 pt-3">
