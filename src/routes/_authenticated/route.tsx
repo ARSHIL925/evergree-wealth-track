@@ -8,7 +8,10 @@ export const Route = createFileRoute("/_authenticated")({
   beforeLoad: async () => {
     const { data, error } = await supabase.auth.getUser();
     if (error || !data.user) throw redirect({ to: "/auth" });
-    return { user: data.user };
+    const u = data.user;
+    const verified = !!u.email_confirmed_at || !!(u as { confirmed_at?: string }).confirmed_at || u.app_metadata?.provider !== "email";
+    if (!verified) throw redirect({ to: "/verify-email" });
+    return { user: u };
   },
   component: () => (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
