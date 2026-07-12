@@ -22,28 +22,35 @@ function OAuthCallback() {
     let cancelled = false;
     let timeout: ReturnType<typeof setTimeout>;
 
-    const go = () => {
+    const go = (session: { user: { email_confirmed_at?: string | null } } | null) => {
       if (cancelled) return;
+      const u = session?.user;
+      if (u && !u.email_confirmed_at) {
+        toast.error("Please verify your email to continue.");
+        nav({ to: "/verify-email", replace: true });
+        return;
+      }
+      toast.success("Signed in successfully");
       nav({ to: "/dashboard", replace: true });
     };
 
     // If a session is already hydrated, go immediately.
     supabase.auth.getSession().then(({ data }) => {
       if (cancelled) return;
-      if (data.session) return go();
+      if (data.session) return go(data.session);
     });
 
     // Otherwise wait for the SIGNED_IN event from the OAuth redirect.
     const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
       if (cancelled) return;
-      if ((event === "SIGNED_IN" || event === "INITIAL_SESSION") && session) go();
+      if ((event === "SIGNED_IN" || event === "INITIAL_SESSION") && session) go(session);
     });
 
     // Fallback: if nothing happens in 8s, bounce back to /auth with an error.
     timeout = setTimeout(() => {
       if (cancelled) return;
       supabase.auth.getSession().then(({ data }) => {
-        if (data.session) return go();
+        if (data.session) return go(data.session);
         setError("We couldn't complete sign-in. Please try again.");
       });
     }, 8000);
