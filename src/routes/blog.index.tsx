@@ -16,6 +16,21 @@ export const Route = createFileRoute("/blog/")({
       { name: "twitter:description", content: "India-first, calm, and honest personal-finance tools." },
     ],
     links: [{ rel: "canonical", href: "https://evergree-wealth-track.lovable.app/blog" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: "Why Evergreen? — Calm, India-first personal finance",
+          description:
+            "Why we built Evergreen: India-first money tools, calm by default, your data locked down, and zero dark patterns.",
+          author: { "@type": "Organization", name: "Evergreen" },
+          publisher: { "@type": "Organization", name: "Evergreen" },
+          mainEntityOfPage: "https://evergree-wealth-track.lovable.app/blog",
+        }),
+      },
+    ],
   }),
   component: WhyEvergreen,
 });
