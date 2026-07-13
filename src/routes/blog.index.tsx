@@ -10,12 +10,27 @@ export const Route = createFileRoute("/blog/")({
       { property: "og:title", content: "Why Evergreen? — Calm, India-first personal finance" },
       { property: "og:description", content: "India-first, calm, and honest personal-finance tools." },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://solace-nest-scribe.lovable.app/blog" },
+      { property: "og:url", content: "https://evergree-wealth-track.lovable.app/blog" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:title", content: "Why Evergreen? — Calm, India-first personal finance" },
       { name: "twitter:description", content: "India-first, calm, and honest personal-finance tools." },
     ],
-    links: [{ rel: "canonical", href: "https://solace-nest-scribe.lovable.app/blog" }],
+    links: [{ rel: "canonical", href: "https://evergree-wealth-track.lovable.app/blog" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: "Why Evergreen? — Calm, India-first personal finance",
+          description:
+            "Why we built Evergreen: India-first money tools, calm by default, your data locked down, and zero dark patterns.",
+          author: { "@type": "Organization", name: "Evergreen" },
+          publisher: { "@type": "Organization", name: "Evergreen" },
+          mainEntityOfPage: "https://evergree-wealth-track.lovable.app/blog",
+        }),
+      },
+    ],
   }),
   component: WhyEvergreen,
 });

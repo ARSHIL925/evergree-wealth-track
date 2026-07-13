@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 const URL = "https://evergree-wealth-track.lovable.app/blog/best-expense-tracker-apps-india";
 const TITLE = "Best Expense Tracker Apps in India (2026): Honest Comparison";
 const DESCRIPTION =
-  "Compare the best expense tracker apps in India — Axio, Walnut, Jupiter, and Evergreen. INR-first, UPI-friendly, and privacy-respecting picks reviewed side by side.";
+  "Compare India's top expense trackers — Axio, Walnut, Jupiter, and Evergreen. INR-first, UPI-friendly, privacy-respecting picks reviewed side by side.";
 
 type App = {
   name: string;

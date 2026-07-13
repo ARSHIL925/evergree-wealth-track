@@ -13,11 +13,11 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Evergreen Wealth Track — Mindful money, INR-first" },
       { property: "og:description", content: "Track expenses across currencies (INR default), pay subscriptions via UPI, calculate, and read curated personal-finance writing — all in one calm dashboard." },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://solace-nest-scribe.lovable.app/" },
+      { property: "og:url", content: "https://evergree-wealth-track.lovable.app/" },
       { name: "twitter:title", content: "Evergreen Wealth Track — Mindful money, INR-first" },
       { name: "twitter:description", content: "Track expenses across currencies (INR default), pay subscriptions via UPI, calculate, and read curated personal-finance writing — all in one calm dashboard." },
     ],
-    links: [{ rel: "canonical", href: "https://solace-nest-scribe.lovable.app/" }],
+    links: [{ rel: "canonical", href: "https://evergree-wealth-track.lovable.app/" }],
   }),
   component: Landing,
 });

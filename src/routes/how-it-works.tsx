@@ -12,11 +12,29 @@ export const Route = createFileRoute("/how-it-works")({
       { property: "og:title", content: "How Evergreen Works — From signup to insight in minutes" },
       { property: "og:description", content: "Sign up, log expenses, set budgets, track subscriptions, see your wealth grow — without spreadsheets." },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://solace-nest-scribe.lovable.app/how-it-works" },
+      { property: "og:url", content: "https://evergree-wealth-track.lovable.app/how-it-works" },
       { name: "twitter:title", content: "How Evergreen Works" },
       { name: "twitter:description", content: "Sign up, log expenses, set budgets, track subscriptions, grow your wealth." },
     ],
-    links: [{ rel: "canonical", href: "https://solace-nest-scribe.lovable.app/how-it-works" }],
+    links: [{ rel: "canonical", href: "https://evergree-wealth-track.lovable.app/how-it-works" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "HowTo",
+          name: "How Evergreen Works",
+          description:
+            "Sign up, log expenses, set budgets, track subscriptions, and see your wealth grow — across currencies, on every device.",
+          step: steps.map((s, i) => ({
+            "@type": "HowToStep",
+            position: i + 1,
+            name: s.title,
+            text: s.body,
+          })),
+        }),
+      },
+    ],
   }),
   component: HowItWorksPage,
 });

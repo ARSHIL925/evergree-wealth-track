@@ -12,11 +12,11 @@ export const Route = createFileRoute("/security")({
       { property: "og:title", content: "Security status — Evergreen Wealth Track" },
       { property: "og:description", content: "Transparent overview of the controls Evergreen has enabled today." },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://solace-nest-scribe.lovable.app/security" },
+      { property: "og:url", content: "https://evergree-wealth-track.lovable.app/security" },
       { name: "twitter:title", content: "Security status — Evergreen" },
       { name: "twitter:description", content: "How Evergreen protects your data." },
     ],
-    links: [{ rel: "canonical", href: "https://solace-nest-scribe.lovable.app/security" }],
+    links: [{ rel: "canonical", href: "https://evergree-wealth-track.lovable.app/security" }],
   }),
   component: SecurityPage,
 });
