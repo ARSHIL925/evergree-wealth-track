@@ -17,6 +17,24 @@ export const Route = createFileRoute("/how-it-works")({
       { name: "twitter:description", content: "Sign up, log expenses, set budgets, track subscriptions, grow your wealth." },
     ],
     links: [{ rel: "canonical", href: "https://evergree-wealth-track.lovable.app/how-it-works" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "HowTo",
+          name: "How Evergreen Works",
+          description:
+            "Sign up, log expenses, set budgets, track subscriptions, and see your wealth grow — across currencies, on every device.",
+          step: steps.map((s, i) => ({
+            "@type": "HowToStep",
+            position: i + 1,
+            name: s.title,
+            text: s.body,
+          })),
+        }),
+      },
+    ],
   }),
   component: HowItWorksPage,
 });
