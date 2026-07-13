@@ -22,10 +22,18 @@ function OAuthCallback() {
     let cancelled = false;
     let timeout: ReturnType<typeof setTimeout>;
 
-    const go = (session: { user: { email_confirmed_at?: string | null } } | null) => {
+    const go = (session: { user: { email_confirmed_at?: string | null; confirmed_at?: string | null; app_metadata?: { provider?: string } } } | null) => {
       if (cancelled) return;
       const u = session?.user;
-      if (u && !u.email_confirmed_at) {
+      if (!u) {
+        setError("We couldn't complete sign-in. Please try again.");
+        return;
+      }
+      const verified =
+        !!u.email_confirmed_at ||
+        !!u.confirmed_at ||
+        (u.app_metadata?.provider && u.app_metadata.provider !== "email");
+      if (!verified) {
         toast.error("Please verify your email to continue.");
         nav({ to: "/verify-email", replace: true });
         return;
