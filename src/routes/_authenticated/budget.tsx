@@ -7,6 +7,7 @@ import { listBudgets, upsertBudget, deleteBudget, updateBudget } from "@/lib/bud
 import { listExpenses } from "@/lib/expenses.functions";
 import { getRates, convertToINR } from "@/lib/currency.functions";
 import { formatINR } from "@/lib/currency";
+import { CATEGORIES as SUGGESTED } from "@/lib/categories";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
