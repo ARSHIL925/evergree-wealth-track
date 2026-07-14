@@ -7,6 +7,7 @@ import { z } from "zod";
 import { listExpenses, addExpense, deleteExpense, updateExpense } from "@/lib/expenses.functions";
 import { getRates, convertToINR } from "@/lib/currency.functions";
 import { CURRENCIES, formatINR, formatMoney } from "@/lib/currency";
+import { CATEGORIES } from "@/lib/categories";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
