@@ -7,6 +7,7 @@ import { listBudgets, upsertBudget, deleteBudget, updateBudget } from "@/lib/bud
 import { listExpenses } from "@/lib/expenses.functions";
 import { getRates, convertToINR } from "@/lib/currency.functions";
 import { formatINR } from "@/lib/currency";
+import { CATEGORIES as SUGGESTED } from "@/lib/categories";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -221,13 +222,6 @@ function SummaryCard({ icon: Icon, label, value, hint, tone }: { icon: typeof Ta
   );
 }
 
-const SUGGESTED = [
-  "general", "food", "groceries", "eating out", "transport", "fuel",
-  "rent", "utilities", "internet", "phone", "shopping", "clothing",
-  "entertainment", "subscriptions", "health", "fitness", "education",
-  "travel", "gifts", "kids", "pets", "savings", "investments",
-  "insurance", "emi", "charity", "special",
-];
 
 function AddBudget({ period, onAdded }: { period: Period; onAdded: (category: string, amount: number) => void }) {
   const [category, setCategory] = useState("general");

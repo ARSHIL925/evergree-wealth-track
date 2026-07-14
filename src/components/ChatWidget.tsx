@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { MessageCircle, X, Settings2, Sparkles } from "lucide-react";
+import { MessageCircle, X, Settings2, Sparkles, Globe } from "lucide-react";
 
 type Lang = "en" | "hi" | "es" | "fr" | "ar" | "bn" | "ta" | "zh";
 
@@ -162,18 +162,26 @@ export function ChatWidget() {
             {lang && (
               <button
                 onClick={() => setShowPicker((v) => !v)}
-                aria-label="Chat settings"
-                className="grid h-8 w-8 place-items-center rounded-full text-muted-foreground hover:bg-muted hover:text-foreground"
+                aria-label="AI Chat language"
+                title="Choose the language used by the AI Assistant"
+                className="flex h-8 items-center gap-1 rounded-full px-2 text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
               >
-                <Settings2 className="h-4 w-4" />
+                <MessageCircle className="h-3.5 w-3.5" />
+                <Globe className="h-3.5 w-3.5" />
+                <span className="hidden sm:inline">Chat language</span>
+                <Settings2 className="h-3.5 w-3.5 opacity-70" />
               </button>
             )}
           </header>
 
           {!lang || showPicker ? (
             <div className="flex flex-1 flex-col gap-3 overflow-y-auto p-5">
-              <p className="font-display text-base">Choose your language</p>
-              <p className="text-xs text-muted-foreground">You can change this later from the gear icon in this chat.</p>
+              <div className="flex items-center gap-2">
+                <MessageCircle className="h-4 w-4 text-primary" />
+                <Globe className="h-4 w-4 text-primary" />
+                <p className="font-display text-base">AI Chat Language</p>
+              </div>
+              <p className="text-xs text-muted-foreground">Choose the language used by the AI Assistant. This does not change the website language — you can update it anytime from the icon above.</p>
               <div className="grid grid-cols-2 gap-2">
                 {(Object.keys(LANG_META) as Lang[]).map((code) => (
                   <button
