@@ -221,13 +221,7 @@ function SummaryCard({ icon: Icon, label, value, hint, tone }: { icon: typeof Ta
   );
 }
 
-const SUGGESTED = [
-  "general", "food", "groceries", "eating out", "transport", "fuel",
-  "rent", "utilities", "internet", "phone", "shopping", "clothing",
-  "entertainment", "subscriptions", "health", "fitness", "education",
-  "travel", "gifts", "kids", "pets", "savings", "investments",
-  "insurance", "emi", "charity", "special",
-];
+import { CATEGORIES as SUGGESTED } from "@/lib/categories";
 
 function AddBudget({ period, onAdded }: { period: Period; onAdded: (category: string, amount: number) => void }) {
   const [category, setCategory] = useState("general");
