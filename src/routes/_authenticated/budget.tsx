@@ -222,7 +222,6 @@ function SummaryCard({ icon: Icon, label, value, hint, tone }: { icon: typeof Ta
   );
 }
 
-import { CATEGORIES as SUGGESTED } from "@/lib/categories";
 
 function AddBudget({ period, onAdded }: { period: Period; onAdded: (category: string, amount: number) => void }) {
   const [category, setCategory] = useState("general");
