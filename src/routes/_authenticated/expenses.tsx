@@ -36,7 +36,7 @@ function ExpensesPage() {
   const nav = useNavigate();
   const qc = useQueryClient();
   const [currency, setCurrency] = useState("INR");
-  const [category, setCategory] = useState<"general" | "special">("general");
+  const [category, setCategory] = useState<string>("general");
   const [viewCurrency, setViewCurrency] = useState("USD");
   const [adding, setAdding] = useState(false);
   const [editing, setEditing] = useState<null | {
@@ -108,11 +108,12 @@ function ExpensesPage() {
             <Input id="amount" name="amount" type="number" step="0.01" min="0" required defaultValue={search.prefill_amount ?? ""} />
           </div>
           <div className="space-y-1.5"><Label>Category</Label>
-            <Select value={category} onValueChange={(v) => setCategory(v as "general" | "special")}>
+            <Select value={category} onValueChange={setCategory}>
               <SelectTrigger><SelectValue /></SelectTrigger>
-              <SelectContent>
-                <SelectItem value="general">General</SelectItem>
-                <SelectItem value="special">Special</SelectItem>
+              <SelectContent className="max-h-72">
+                {CATEGORIES.map((c) => (
+                  <SelectItem key={c} value={c} className="capitalize">{c}</SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
@@ -182,13 +183,14 @@ function ExpensesPage() {
               </div>
               <div className="space-y-1.5"><Label>Category</Label>
                 <Select
-                  value={editing.category === "special" ? "special" : "general"}
+                  value={editing.category}
                   onValueChange={(v) => setEditing({ ...editing, category: v })}
                 >
                   <SelectTrigger><SelectValue /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="general">General</SelectItem>
-                    <SelectItem value="special">Special</SelectItem>
+                  <SelectContent className="max-h-72">
+                    {CATEGORIES.map((c) => (
+                      <SelectItem key={c} value={c} className="capitalize">{c}</SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
