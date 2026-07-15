@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CURRENCIES } from "@/lib/currency";
+import { setStoredBaseCurrency } from "@/hooks/useDisplayCurrency";
 
 const profileQuery = queryOptions({ queryKey: ["my-profile"], queryFn: () => getMyProfile() });
 
@@ -51,13 +52,15 @@ function ProfilePage() {
     setSaving(true);
     try {
       const fd = new FormData(e.currentTarget);
+      const prefCurrency = String(fd.get("preferred_currency") || "INR");
       await updateMyProfile({ data: {
         display_name: String(fd.get("display_name") || ""),
-        preferred_currency: String(fd.get("preferred_currency") || "INR"),
+        preferred_currency: prefCurrency,
         upi_id: String(fd.get("upi_id") || ""),
         bio: String(fd.get("bio") || ""),
         avatar_url: previewUrl ?? undefined,
       } });
+      setStoredBaseCurrency(prefCurrency);
       await qc.invalidateQueries({ queryKey: ["my-profile"] });
       toast.success("Profile saved");
     } catch (err) { toast.error(err instanceof Error ? err.message : "Save failed"); }

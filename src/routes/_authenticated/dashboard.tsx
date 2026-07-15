@@ -7,7 +7,8 @@ import { Wallet, Calculator, IndianRupee, BookOpen, Smartphone, ExternalLink, Ta
 import { listExpenses, addExpense } from "@/lib/expenses.functions";
 import { listMySubscriptions } from "@/lib/razorpay.functions";
 import { getRates, convertToINR } from "@/lib/currency.functions";
-import { formatINR } from "@/lib/currency";
+
+import { useDisplayCurrency } from "@/hooks/useDisplayCurrency";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
@@ -66,15 +67,17 @@ function Stats() {
   const { data: expenses } = useSuspenseQuery(expensesQuery);
   const { data: subs } = useSuspenseQuery(subsQuery);
   const { data: rates } = useSuspenseQuery(ratesQuery);
+  const display = useDisplayCurrency(rates.rates);
   const totalINR = expenses.reduce((acc, e) => acc + convertToINR(Number(e.amount), e.currency, rates.rates), 0);
   const monthStart = new Date(); monthStart.setDate(1); monthStart.setHours(0, 0, 0, 0);
   const thisMonth = expenses.filter((e) => new Date(e.occurred_at) >= monthStart)
     .reduce((acc, e) => acc + convertToINR(Number(e.amount), e.currency, rates.rates), 0);
   const active = subs.filter((s) => s.status === "active").length;
+  const hint = display.code === "INR" ? "across all currencies → INR" : `converted to ${display.code} at live rates`;
   return (
     <div className="grid gap-4 sm:grid-cols-3">
-      <StatCard label="All-time spent" value={formatINR(totalINR)} hint={`${expenses.length} transactions`} />
-      <StatCard label="This month" value={formatINR(thisMonth)} hint="across all currencies → INR" />
+      <StatCard label="All-time spent" value={display.format(totalINR)} hint={`${expenses.length} transactions`} />
+      <StatCard label="This month" value={display.format(thisMonth)} hint={hint} />
       <StatCard label="Active plans" value={String(active)} hint={subs.length === 0 ? "no subscriptions yet" : `${subs.length} total`} />
     </div>
   );
