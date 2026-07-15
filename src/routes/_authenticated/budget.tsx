@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useSuspenseQuery, queryOptions, useQueryClient } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
-import { Plus, Trash2, Pencil, TrendingUp, CalendarDays, Calendar, Target, Sparkles } from "lucide-react";
+import { Plus, Trash2, Pencil, TrendingUp, CalendarDays, Calendar, Target, Sparkles, History } from "lucide-react";
 import { listBudgets, upsertBudget, deleteBudget, updateBudget } from "@/lib/budgets.functions";
 import { listExpenses } from "@/lib/expenses.functions";
 import { getRates, convertToINR } from "@/lib/currency.functions";
@@ -182,6 +182,9 @@ function BudgetBoard({ period }: { period: Period }) {
           );
         })}
       </div>
+
+      <BudgetHistory period={period} />
+
 
       <Dialog open={!!editing} onOpenChange={(o) => !o && setEditing(null)}>
         <DialogContent>
