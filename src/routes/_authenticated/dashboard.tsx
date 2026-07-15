@@ -7,7 +7,7 @@ import { Wallet, Calculator, IndianRupee, BookOpen, Smartphone, ExternalLink, Ta
 import { listExpenses, addExpense } from "@/lib/expenses.functions";
 import { listMySubscriptions } from "@/lib/razorpay.functions";
 import { getRates, convertToINR } from "@/lib/currency.functions";
-import { formatINR } from "@/lib/currency";
+
 import { useDisplayCurrency } from "@/hooks/useDisplayCurrency";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
