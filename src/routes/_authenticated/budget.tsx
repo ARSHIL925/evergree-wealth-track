@@ -269,3 +269,77 @@ function AddBudget({ period, onAdded }: { period: Period; onAdded: (category: st
     </Card>
   );
 }
+
+function BudgetHistory({ period }: { period: Period }) {
+  const { data: expenses } = useSuspenseQuery(eQ);
+  const { data: rates } = useSuspenseQuery(rQ);
+  const { data: budgets } = useSuspenseQuery(bQ);
+
+  const rows = useMemo(() => {
+    const now = new Date();
+    const buckets: { key: string; label: string; start: Date; end: Date }[] = [];
+    if (period === "monthly") {
+      for (let i = 1; i <= 6; i++) {
+        const start = new Date(now.getFullYear(), now.getMonth() - i, 1);
+        const end = new Date(now.getFullYear(), now.getMonth() - i + 1, 1);
+        buckets.push({
+          key: `${start.getFullYear()}-${start.getMonth()}`,
+          label: start.toLocaleString("en-IN", { month: "long", year: "numeric" }),
+          start, end,
+        });
+      }
+    } else {
+      for (let i = 1; i <= 4; i++) {
+        const start = new Date(now.getFullYear() - i, 0, 1);
+        const end = new Date(now.getFullYear() - i + 1, 0, 1);
+        buckets.push({ key: String(start.getFullYear()), label: String(start.getFullYear()), start, end });
+      }
+    }
+    const planned = budgets.filter((b) => b.period === period).reduce((a, b) => a + Number(b.amount_inr), 0);
+    return buckets.map((b) => {
+      let spent = 0;
+      for (const e of expenses) {
+        const t = new Date(e.occurred_at).getTime();
+        if (t < b.start.getTime() || t >= b.end.getTime()) continue;
+        spent += convertToINR(Number(e.amount), e.currency, rates.rates);
+      }
+      return { ...b, spent, planned };
+    });
+  }, [expenses, rates, budgets, period]);
+
+  const anySpent = rows.some((r) => r.spent > 0);
+
+  return (
+    <Card className="mt-8 border-border/60">
+      <CardContent className="p-6">
+        <div className="mb-4 flex items-center gap-2 text-sm text-muted-foreground">
+          <History className="h-4 w-4 text-primary" />
+          <span className="font-medium text-foreground">History</span>
+          <span>· past {period === "monthly" ? "6 months" : "4 years"} vs. current plan</span>
+        </div>
+        {!anySpent ? (
+          <p className="text-sm text-muted-foreground">No past activity yet — history will fill in as you log expenses over time.</p>
+        ) : (
+          <ul className="divide-y divide-border">
+            {rows.map((r) => {
+              const pct = r.planned > 0 ? Math.min(100, (r.spent / r.planned) * 100) : 0;
+              const over = r.planned > 0 && r.spent > r.planned;
+              return (
+                <li key={r.key} className="py-3">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <div className="font-medium">{r.label}</div>
+                    <div className="text-right text-sm">
+                      <span className={over ? "text-destructive font-medium" : ""}>{formatINR(r.spent)}</span>
+                      {r.planned > 0 && <span className="text-muted-foreground"> / {formatINR(r.planned)}</span>}
+                    </div>
+                  </div>
+                  {r.planned > 0 && <Progress value={pct} className={`mt-2 ${over ? "[&>div]:bg-destructive" : ""}`} />}
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
